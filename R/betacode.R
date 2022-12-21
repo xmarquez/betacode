@@ -2,6 +2,8 @@
 #'
 #' @param beta_text The text to be converted to Unicode. Can be a character
 #'   vector or a list of character vectors.
+#' @param strict Whether to use strict accent and diacritics order. Default is
+#'   `FALSE`.
 #'
 #' @return A character vector of the same length as `beta_text` with the Unicode
 #'   representation of the betacode in it. Gives a warning when it encounters
@@ -14,9 +16,24 @@
 #'
 #' # Gives a warning when encountering bad betacode:
 #' betacode_to_unicode(paste("p*l*%a*t*o*n*", plato_republic$text[1]))
-betacode_to_unicode <- function(beta_text) {
-  beta_trie <- triebeard::trie(keys = names(BETACODE_MAP),
-                               values = as.character(BETACODE_MAP))
+#' betacode_to_unicode("fh|\\s")
+#'
+#' # But sometimes the warning can be avoided by relaxing the matching of
+#' # diacritics
+#' betacode_to_unicode("fh|\\s", strict = FALSE)
+betacode_to_unicode <- function(beta_text, strict = TRUE) {
+  if(strict) {
+    beta_trie <- triebeard::trie(keys = names(BETACODE_MAP),
+                                 values = as.character(BETACODE_MAP))
+
+  } else {
+    character_perms <- lapply(stringr::str_split(names(BETACODE_MAP), ""),
+                              permute_diacritics)
+    lengths <- unlist(lapply(character_perms, length))
+    values <- mapply(rep, as.character(BETACODE_MAP), lengths)
+    beta_trie <- triebeard::trie(keys = unlist(character_perms),
+                                 values = unlist(values))
+  }
   beta_text <- stringr::str_split(beta_text, " ", simplify = FALSE)
   reverse_data <- as.data.frame(beta_trie)
   unlist(lapply(beta_text, function(x) bc_to_uc_single(x,
@@ -53,6 +70,18 @@ bc_to_uc_single <- function(sentence, beta_trie, reverse_data) {
 
 }
 
+permute_diacritics <- function(beta_string) {
+  if(length(beta_string) <= 1) {
+    return(beta_string)
+  }
+
+  to_permute <- beta_string[2:length(beta_string)]
+  res <- gtools::permutations(length(to_permute), length(to_permute),
+                              to_permute, repeats.allowed = FALSE)
+  res <- apply(res, MARGIN = 1, FUN = function(x) paste0(x, collapse = ""))
+  stringr::str_trim(paste0(beta_string[1], res))
+
+}
 #' Betacode for Plato's Republic
 #'
 #' This is the betacode for Plato's Republic, sourced from the Diorisis ancient
