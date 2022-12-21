@@ -9,7 +9,8 @@
 <!-- badges: end -->
 
 This package does exactly one thing: convert [beta
-code](https://en.wikipedia.org/wiki/Beta_Code) to unicode Greek text.
+code](https://en.wikipedia.org/wiki/Beta_Code) to unicode Greek text
+(and vice-versa).
 
 ## Installation
 
@@ -72,9 +73,9 @@ will produce output regardless.
 ``` r
 betacode_to_unicode("*sidw\\n e)pi\\ qala/tth| po/lis a*)ssuri/wn")
 #> Warning in bc_to_uc_single(x, beta_trie, reverse_data): Word `a*)ssuri/wn`
-#> contains incorrect betacode. Returning `Σιδὼν ἐπὶ θαλάττῃ πόλις α[bad betacode:
-#> *)ssuri/wn]`.
-#> [1] "Σιδὼν ἐπὶ θαλάττῃ πόλις α[bad betacode: *)ssuri/wn]"
+#> contains incorrect Beta Code. Returning `Σιδὼν ἐπὶ θαλάττῃ πόλις α[bad Beta
+#> Code: *)ssuri/wn]`.
+#> [1] "Σιδὼν ἐπὶ θαλάττῃ πόλις α[bad Beta Code: *)ssuri/wn]"
 ```
 
 However, it is possible to avoid some warnings by relaxing the matching
@@ -83,8 +84,26 @@ order of accents and other diacritics by specifying `strict = FALSE`:
 ``` r
 betacode_to_unicode("fh|\\s")
 #> Warning in bc_to_uc_single(x, beta_trie, reverse_data): Word `fh|\s` contains
-#> incorrect betacode. Returning `φῃ[bad betacode: \s]`.
-#> [1] "φῃ[bad betacode: \\s]"
+#> incorrect Beta Code. Returning `φῃ[bad Beta Code: \s]`.
+#> [1] "φῃ[bad Beta Code: \\s]"
 betacode_to_unicode("fh|\\s", strict = FALSE)
 #> [1] "φῂς"
+```
+
+You can also convert Unicode Greek to Beta Code:
+
+``` r
+unicode_to_betacode("Σιδὼν ἐπὶ θαλάττῃ πόλις Ἀσσυρίων")
+#> [1] "*sidw\\n e)pi\\ qala/tth| po/lis *)assuri/wn"
+```
+
+This function will give a warning when it encounters characters it
+cannot convert to Beta Code, and wrap these in brackets:
+
+``` r
+unicode_to_betacode("From Achilles Tatius: Σιδὼν ἐπὶ θαλάττῃ πόλις Ἀσσυρίων")
+#> Warning in uc_to_bc_single(x, unicode_matches): Some characters were not
+#> converted to Beta Code. They may not be unicode Greek characters. These are
+#> wrapped in brackets.
+#> [1] "[From Achilles Tatius:] *sidw\\n e)pi\\ qala/tth| po/lis *)assuri/wn"
 ```
