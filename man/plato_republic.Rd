@@ -3,7 +3,7 @@
 \docType{data}
 \name{plato_republic}
 \alias{plato_republic}
-\title{Betacode for Plato's Republic}
+\title{Beta Code for Plato's Republic}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 6389 rows and 2 columns.
 }
@@ -17,9 +17,9 @@ https://figshare.com/articles/dataset/The_Diorisis_Ancient_Greek_Corpus/6187256
 plato_republic
 }
 \description{
-This is the betacode for Plato's Republic, sourced from the \href{https://figshare.com/articles/dataset/The_Diorisis_Ancient_Greek_Corpus/6187256}{Diorisis ancient Greek corpus}.
-The dataframe contains two columns: the \code{text} column contains
-each sentence in betacode, and the \code{location} column contains the Stephanus
-book and page number for the sentence.
+This is the Beta Code for Plato's Republic, sourced from the \href{https://figshare.com/articles/dataset/The_Diorisis_Ancient_Greek_Corpus/6187256}{Diorisis ancient Greek corpus}.
+The dataframe contains two columns: the \code{text} column contains each sentence
+in Beta Code, and the \code{location} column contains the Stephanus book and page
+number for the sentence.
 }
 \keyword{datasets}

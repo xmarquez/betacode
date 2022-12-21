@@ -2,30 +2,30 @@
 % Please edit documentation in R/betacode.R
 \name{betacode_to_unicode}
 \alias{betacode_to_unicode}
-\title{Betacode to Unicode conversion}
+\title{Beta Code to Unicode conversion}
 \usage{
 betacode_to_unicode(beta_text, strict = TRUE)
 }
 \arguments{
-\item{beta_text}{The text to be converted to Unicode. Can be a character
-vector or a list of character vectors.}
+\item{beta_text}{The Beta Code text to be converted to Unicode. Can be a
+character vector.}
 
 \item{strict}{Whether to use strict accent and diacritics order. Default is
-\code{FALSE}.}
+\code{TRUE}.}
 }
 \value{
 A character vector of the same length as \code{beta_text} with the Unicode
-representation of the betacode in it. Gives a warning when it encounters
-malformed betacode.
+representation of the Beta Code in it. Gives a warning when it encounters
+malformed Beta Code.
 }
 \description{
-Betacode to Unicode conversion
+Beta Code to Unicode conversion
 }
 \examples{
 betacode_to_unicode("*sidw\\\\n e)pi\\\\ qala/tth| po/lis *)assuri/wn")
 betacode_to_unicode(plato_republic$text[1:4])
 
-# Gives a warning when encountering bad betacode:
+# Gives a warning when encountering bad Beta Code:
 betacode_to_unicode(paste("p*l*\%a*t*o*n*", plato_republic$text[1]))
 betacode_to_unicode("fh|\\\\s")
 
