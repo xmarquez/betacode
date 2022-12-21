@@ -1,0 +1,63 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# betacode
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/xmarquez/betacode/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/xmarquez/betacode/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+This package does exactly one thing: convert [beta code](https://en.wikipedia.org/wiki/Beta_Code) to unicode Greek text.
+
+## Installation
+
+You can install the development version of betacode from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("xmarquez/betacode")
+```
+
+## Examples
+
+Here's a simple example of converting beta code to unicode:
+
+```{r example}
+library(betacode)
+betacode_to_unicode("*sidw\\n e)pi\\ qala/tth| po/lis *)assuri/wn")
+```
+
+The package also includes the beta code from Plato's Republic (split into sentences, and sourced from the [Diorisis ancient Greek corpus](https://figshare.com/articles/dataset/The_Diorisis_Ancient_Greek_Corpus/6187256)), which one can use to test the package:
+
+```{r example2}
+library(dplyr)
+plato_republic %>%
+  slice_head(n = 10) %>%
+  mutate(unicode_text = betacode_to_unicode(text)) %>%
+  knitr::kable()
+```
+
+The package gives a warning when it encounters malformed beta code, but will produce output regardless. 
+
+```{r}
+betacode_to_unicode("*sidw\\n e)pi\\ qala/tth| po/lis a*)ssuri/wn")
+```
+However, it is possible to avoid some warnings by relaxing the matching order of accents and other diacritics by specifying `strict = FALSE`:
+
+```{r}
+betacode_to_unicode("fh|\\s")
+betacode_to_unicode("fh|\\s", strict = FALSE)
+```
+
