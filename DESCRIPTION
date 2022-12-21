@@ -8,7 +8,6 @@ Authors@R:
            role = c("aut", "cre"),
            email = "marquez.x@gmail.com",
            comment = c(ORCID = "0000-0001-7653-9334"))
-Maintainer: The package maintainer <yourself@somewhere.net>
 Description: Converts TLG-style Betacode to Unicode Text.
 License: GPL (>= 3)
 Encoding: UTF-8
