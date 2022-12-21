@@ -7,14 +7,21 @@
 betacode_to_unicode(beta_text)
 }
 \arguments{
-\item{beta_text}{The text to be converted to Unicode}
+\item{beta_text}{The text to be converted to Unicode. Can be a character
+vector or a list of character vectors.}
 }
 \value{
-A string with the Unicode representation of the betacode
+A character vector of the same length as \code{beta_text} with the Unicode
+representation of the betacode in it. Gives a warning when it encounters
+malformed betacode.
 }
 \description{
 Betacode to Unicode conversion
 }
 \examples{
 betacode_to_unicode("*sidw\\\\n e)pi\\\\ qala/tth| po/lis *)assuri/wn")
+betacode_to_unicode(plato_republic$text[1:4])
+
+# Gives a warning when encountering bad betacode:
+betacode_to_unicode(paste("p*l*\%a*t*o*n*", plato_republic$text[1]))
 }

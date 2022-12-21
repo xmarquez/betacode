@@ -22,3 +22,6 @@ RoxygenNote: 7.2.2
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/xmarquez/betacode
 BugReports: https://github.com/xmarquez/betacode/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
