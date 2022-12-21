@@ -20,7 +20,8 @@ Imports:
     triebeard
 RoxygenNote: 7.2.2
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/xmarquez/betacode
+URL: https://github.com/xmarquez/betacode,
+    https://xmarquez.github.io/betacode/
 BugReports: https://github.com/xmarquez/betacode/issues
 Suggests: 
     testthat (>= 3.0.0)
