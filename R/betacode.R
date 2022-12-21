@@ -84,8 +84,9 @@ permute_diacritics <- function(beta_string) {
 }
 #' Betacode for Plato's Republic
 #'
-#' This is the betacode for Plato's Republic, sourced from the Diorisis ancient
-#' Greek corpus. The dataframe contains two columns: the `text` column contains
+#' This is the betacode for Plato's Republic, sourced from the [Diorisis ancient
+#' Greek corpus](https://figshare.com/articles/dataset/The_Diorisis_Ancient_Greek_Corpus/6187256).
+#' The dataframe contains two columns: the `text` column contains
 #' each sentence in betacode, and the `location` column contains the Stephanus
 #' book and page number for the sentence.
 #'

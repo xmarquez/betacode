@@ -17,8 +17,8 @@ https://figshare.com/articles/dataset/The_Diorisis_Ancient_Greek_Corpus/6187256
 plato_republic
 }
 \description{
-This is the betacode for Plato's Republic, sourced from the Diorisis ancient
-Greek corpus. The dataframe contains two columns: the \code{text} column contains
+This is the betacode for Plato's Republic, sourced from the \href{https://figshare.com/articles/dataset/The_Diorisis_Ancient_Greek_Corpus/6187256}{Diorisis ancient Greek corpus}.
+The dataframe contains two columns: the \code{text} column contains
 each sentence in betacode, and the \code{location} column contains the Stephanus
 book and page number for the sentence.
 }
