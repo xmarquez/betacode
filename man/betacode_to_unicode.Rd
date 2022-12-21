@@ -4,11 +4,14 @@
 \alias{betacode_to_unicode}
 \title{Betacode to Unicode conversion}
 \usage{
-betacode_to_unicode(beta_text)
+betacode_to_unicode(beta_text, strict = TRUE)
 }
 \arguments{
 \item{beta_text}{The text to be converted to Unicode. Can be a character
 vector or a list of character vectors.}
+
+\item{strict}{Whether to use strict accent and diacritics order. Default is
+\code{FALSE}.}
 }
 \value{
 A character vector of the same length as \code{beta_text} with the Unicode
@@ -24,4 +27,9 @@ betacode_to_unicode(plato_republic$text[1:4])
 
 # Gives a warning when encountering bad betacode:
 betacode_to_unicode(paste("p*l*\%a*t*o*n*", plato_republic$text[1]))
+betacode_to_unicode("fh|\\\\s")
+
+# But sometimes the warning can be avoided by relaxing the matching of
+# diacritics
+betacode_to_unicode("fh|\\\\s", strict = FALSE)
 }
